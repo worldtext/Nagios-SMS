@@ -19,9 +19,9 @@ Getting a token
 ---------------
 
 Create an API token in the customer portal at
-<https://portal.world-text.com/account/api-tokens/>, ticking the **sms**
-permission. That permission is required; without it every send is refused with
-HTTP 403.
+<https://portal.world-text.com/account/api-tokens/>, ticking the **http**
+interface. That interface is what lets the token be used against the HTTP API at
+all; without it every send is refused with HTTP 403.
 
 A token can be given an expiry date and revoked at any time. It is displayed
 once, when created, and cannot be recovered afterwards — only a SHA-256 digest

@@ -2,8 +2,8 @@
 """Nagios notification plugin: send an SMS through the World Text HTTP API.
 
 Authenticates with a bearer token. The old account id/API key pair is gone:
-the token is a single secret, carries only the permissions it was issued with
-(you need `sms`), and can be revoked or expired independently of your account.
+the token is a single secret, carries only the interfaces it was issued for
+(you need `http`), and can be revoked or expired independently of your account.
 
 The token is never printed. Prefer the WORLDTEXT_TOKEN environment variable
 over --token, because a command line is visible to every user on the host via
@@ -57,7 +57,7 @@ def parse_args(argv):
     p = NagiosArgumentParser(
         prog="notify_worldtext_sms.py",
         description="Send an SMS notification through the World Text HTTP API.",
-        epilog="The token needs the 'sms' permission. It may also be supplied "
+        epilog="The token needs the 'http' interface. It may also be supplied "
                "in the %s environment variable, which keeps it out of the "
                "process table." % TOKEN_ENV,
     )
@@ -142,7 +142,7 @@ def _describe_http_error(exc):
     if exc.code == 401:
         hint = "token missing, malformed, expired or revoked"
     elif exc.code == 403:
-        hint = "token lacks the 'sms' permission"
+        hint = "token lacks the 'http' interface"
     elif exc.code == 429:
         hint = "rate limited; retry later"
     else:
